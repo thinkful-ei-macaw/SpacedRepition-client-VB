@@ -1,0 +1,16 @@
+.home {
+  margin-left: 15%;
+  color: rgb(116, 192, 240);
+}
+
+.link {
+  color: rgb(96, 247, 141);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}

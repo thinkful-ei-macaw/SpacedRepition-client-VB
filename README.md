@@ -1,11 +1,13 @@
 # Spaced Repetition Capstone
 
+# NEEDED CHANGES FOR SCALING UPWARDS ON SCREENSIZE: Hovering links to be cool
+
 ## Setup
 
 To setup the application
 
 1. Fork and clone the project to your machine
-2. `npm install`. This will also install the application *Cypress.io* for running browser integration tests
+2. `npm install`. This will also install the application _Cypress.io_ for running browser integration tests
 
 The project expects you have the Spaced repetition API project setup and running on http://localhost:8000.
 
@@ -45,4 +47,5 @@ npm run cypress:run
 ```
 
 This will save video recordings of the test runs in the directory `./cypress/videos/`.
+
 # SpacedRepition-client-VB

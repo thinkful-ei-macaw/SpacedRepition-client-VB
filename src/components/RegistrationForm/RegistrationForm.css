@@ -1,0 +1,49 @@
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+}
+
+input {
+  margin-bottom: 3em;
+  margin-left: 20%;
+  border-radius: 5%;
+  height: 35px;
+  font-size: 16px;
+}
+
+label {
+  margin-right: 1em;
+  margin-left: 20%;
+}
+
+button {
+  margin-left: 30%;
+  margin-bottom: 1em;
+}
+
+section {
+  border: 1px black solid;
+  border-radius: 5%;
+  margin-top: 2em;
+  padding: 1em;
+  margin-left: 1em;
+  margin-right: 1em;
+  background-color: rgb(116, 192, 240);
+}
+
+.signup-header {
+  margin-left: 35%;
+}
+
+.app-desc {
+  text-align: center;
+  font-family: monospace;
+  font-size: 16px;
+}
+
+.already {
+  cursor: pointer;
+  color: white;
+}
