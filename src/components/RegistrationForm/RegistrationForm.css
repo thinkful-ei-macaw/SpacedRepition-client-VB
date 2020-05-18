@@ -11,7 +11,7 @@ input {
   height: 35px;
   font-size: 16px;
   margin-left: 20%;
-  border:1px solid black;
+  border: 1px solid black;
 }
 
 label {
@@ -51,20 +51,39 @@ section {
   color: white;
 }
 
-
 @media only screen and (min-width: 600px) {
   section {
     border: 1px black solid;
     border-radius: 5%;
     margin-top: 2em;
     padding: 1em;
-    margin-left: 30em;
-    margin-right: 15em;
+    margin-left: auto;
+    margin-right: auto;
     background-color: rgb(116, 192, 240);
-    width:32%;
-   
+    width: 70%;
   }
-  button{
-    margin-left: 44%;
+  button {
+    margin-left: 20%;
+    font-size: 20px;
+  }
+  .app-desc {
+    font-size: 22px;
+  }
+  .signup-header {
+    margin-left: 40%;
+  }
+  label {
+    margin-right: 0px;
+    margin-left: 20%;
+  }
+  #registration-name-inputs {
+    margin-left: 25px;
+  }
+  #registration-password-inputs {
+    margin-left: 25px;
+  }
+
+  #registration-username-inputs {
+    margin-left: 25px;
   }
 }
