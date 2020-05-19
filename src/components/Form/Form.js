@@ -2,9 +2,9 @@ import React from 'react'
 import cx from 'classnames'
 import './Form.css'
 
-export function Label({ className, ...props }) {
+export function Label({ className, ...props }, inputId, content) {
   return (
-    <label className={cx('Label', className)} {...props} />
+    <label className={cx('Label', className)} {...props} htmlFor={inputId} >{content} </label>
   )
 }
 
