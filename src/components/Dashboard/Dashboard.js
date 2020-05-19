@@ -2,6 +2,7 @@ import React from "react";
 import Config from "../../config";
 import TokenService from "../../services/token-service";
 import { Link } from "react-router-dom";
+import "./Dashboard.css";
 export default class Dashboard extends React.Component {
   state = {
     language: [],
@@ -19,11 +20,9 @@ export default class Dashboard extends React.Component {
         if (!res.ok) {
           return res.json().then((e) => Promise.reject(e));
         }
-        console.log("in promise1");
         return res.json();
       })
       .then((data) => {
-        console.log("this is the ressss", data);
         //update state here
         this.setState({ language: data.language, words: data.words });
       })
@@ -31,25 +30,41 @@ export default class Dashboard extends React.Component {
   }
 
   render() {
-    console.log(this.state.language);
     const wordings = this.state.words.map((x, id) => {
       return (
-        <li key={id}>
-          {x.original} Correct: {x.correct_count} Wrong: {x.incorrect_count}
-        </li>
+        
+          <li className="remove-bullet" key={id}>
+           <h4 className="fit original-word">{x.original}</h4> 
+            <span className="correct fit">correct answer count: {x.correct_count}</span>{" "}
+            <span className="wrong fit">incorrect answer count: {x.incorrect_count}</span>
+          </li>
+        
       );
     });
     return (
       <div>
-        <h2 className="dash-title">
-          Dashboard
-          {this.state.language.name} Total Correct{" "}
-          <span>{this.state.language.total_score}</span>
-          <Link className="link" to="/learn" style={{ textDecoration: "none" }}>
-            Start Learning
-          </Link>
+        <h2>
+          <div className="main-title">
+            <span className="dash-title">Dashboard</span>
+            <span className="lang-title">{this.state.language.name}</span>
+          </div>
+          <div>
+            <section className="total-title">
+              Total correct answers: {this.state.language.total_score}
+            </section>
+          </div>
+          <div>
+            <Link
+              className="link total-title start-btn"
+              to="/learn"
+              style={{ textDecoration: "none" }}
+            >
+              Start practicing
+            </Link>
+          </div>
         </h2>
-        <ul>{wordings}</ul>
+        <h3 className="center">Words to practice</h3>
+        <ul class="center">{wordings}</ul>
         <br />
       </div>
     );
