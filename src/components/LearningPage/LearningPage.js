@@ -1,8 +1,8 @@
 import React from "react";
-import { Label, Input, Form, Required, Textarea } from "../Form/Form";
+import { Label, Input, Required, Textarea } from "../Form/Form";
 import Config from "../../config";
 import TokenService from "../../services/token-service";
-
+import Button from "../Button/Button";
 export default class LearningPage extends React.Component {
   constructor(props) {
     super(props);
@@ -39,9 +39,42 @@ export default class LearningPage extends React.Component {
       })
       .catch((error) => console.log(error));
   }
-  //ref.current.value to get from input 
+
+  submitGuess = (e) => {
+    e.preventDefault();
+    fetch(`${Config.API_ENDPOINT}/language/guess`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${TokenService.getAuthToken()}`,
+      },
+      body: JSON.stringify(e.ref.value),
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(res.statusText);
+        }
+        return res.json();
+      })
+      .then((word) => {
+        console.log(word);
+        this.setState({
+          nextWord: word.nextWord,
+          totalScore: word.totalScore,
+          wordCorrectCount: word.wordCorrectCount,
+          wordIncorrectCount: word.wordIncorrectCount,
+        });
+      })
+      .catch((err) => console.log(err));
+  };
+
+  //ref.current.value to get from input
   render() {
-    let label = Label({ className: "guess-input" }, 'answer', 'Provide answer here');
+    let label = Label(
+      { className: "guess-input" },
+      "answer",
+      "Provide answer here"
+    );
     let requiredLabel = Required({});
     return (
       <div>
@@ -50,7 +83,15 @@ export default class LearningPage extends React.Component {
         <p>Word incorrect count: {this.state.wordIncorrectCount}</p>
         <p>{this.state.nextWord}</p>
         <p>{label}</p>
-        <p><Input type="text" ref={this.userInput} />{requiredLabel}</p>
+        <p>
+          <Input type="text" ref={this.userInput} />
+          {requiredLabel}
+        </p>
+        <p>
+          <button type="submit" onClick={this.submitGuess}>
+            Submit Guess
+          </button>
+        </p>
       </div>
     );
   }
