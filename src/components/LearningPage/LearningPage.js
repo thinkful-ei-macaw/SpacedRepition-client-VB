@@ -9,10 +9,14 @@ export default class LearningPage extends React.Component {
     this.userInput = React.createRef();
   }
   state = {
+    currentWord: "",
     nextWord: "",
     totalScore: 0,
     wordCorrectCount: 0,
     wordIncorrectCount: 0,
+    answer: "",
+    isCorrect: false,
+    btnClicked: false,
   };
 
   componentDidMount() {
@@ -42,13 +46,15 @@ export default class LearningPage extends React.Component {
 
   submitGuess = (e) => {
     e.preventDefault();
+    let value = this.userInput.current.value;
+    console.log("this is the value of user input:", value);
     fetch(`${Config.API_ENDPOINT}/language/guess`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
         authorization: `Bearer ${TokenService.getAuthToken()}`,
       },
-      body: JSON.stringify(e.ref.value),
+      body: JSON.stringify({ guess: value }),
     })
       .then((res) => {
         if (!res.ok) {
@@ -59,14 +65,24 @@ export default class LearningPage extends React.Component {
       .then((word) => {
         console.log(word);
         this.setState({
+          // currentWord: this.state.nextWord,
           nextWord: word.nextWord,
           totalScore: word.totalScore,
           wordCorrectCount: word.wordCorrectCount,
           wordIncorrectCount: word.wordIncorrectCount,
+          isCorrect: word.isCorrect,
+          answer: word.answer,
+          btnClicked: true,
         });
       })
       .catch((err) => console.log(err));
   };
+
+  results() {
+    if (this.state.isCorrect) {
+      return `That's right! Good Job`;
+    }
+  }
 
   //ref.current.value to get from input
   render() {
@@ -76,6 +92,7 @@ export default class LearningPage extends React.Component {
       "Provide answer here"
     );
     let requiredLabel = Required({});
+
     return (
       <div>
         <p>Total score: {this.state.totalScore}</p>
@@ -88,9 +105,14 @@ export default class LearningPage extends React.Component {
           {requiredLabel}
         </p>
         <p>
-          <button type="submit" onClick={this.submitGuess}>
-            Submit Guess
-          </button>
+          {this.state.btnClicked ? (
+            <button type="submit">Next Word</button>
+          ) : (
+            <button type="submit" onClick={this.submitGuess}>
+              Submit Guess
+            </button>
+          )}
+          {<button type="submit">Next Word</button> && this.state.answer}
         </p>
       </div>
     );
