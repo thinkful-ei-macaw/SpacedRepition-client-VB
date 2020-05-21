@@ -113,7 +113,7 @@ export default class LearningPage extends React.Component {
               Submit Guess
             </button>
           )}
-          {<button type="submit">Next Word</button> && this.state.answer}
+          {<button type="submit">Next Word</button> && <div>this.state.answer</div>}
         </p>
       </div>
     );
