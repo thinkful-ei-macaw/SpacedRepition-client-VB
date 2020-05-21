@@ -35,6 +35,7 @@ export default class LearningPage extends React.Component {
         //update state here
         console.log(data);
         this.setState({
+          currentWord: data.currentWord,
           nextWord: data.nextWord,
           totalScore: data.totalScore,
           wordCorrectCount: data.wordCorrectCount,
@@ -65,7 +66,7 @@ export default class LearningPage extends React.Component {
       .then((word) => {
         console.log(word);
         this.setState({
-          // currentWord: this.state.nextWord,
+          currentWord: word.currentWord,
           nextWord: word.nextWord,
           totalScore: word.totalScore,
           wordCorrectCount: word.wordCorrectCount,
@@ -98,7 +99,7 @@ export default class LearningPage extends React.Component {
         <p>Total score: {this.state.totalScore}</p>
         <p>Word correct count: {this.state.wordCorrectCount}</p>
         <p>Word incorrect count: {this.state.wordIncorrectCount}</p>
-        <p>{this.state.nextWord}</p>
+        <p>{this.state.currentWord}</p>
         <p>{label}</p>
         <p>
           <Input type="text" ref={this.userInput} />
