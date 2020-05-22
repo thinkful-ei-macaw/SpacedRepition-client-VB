@@ -1,51 +1,104 @@
-# Spaced Repetition Capstone
+# Spaced repetition API!
 
-# NEEDED CHANGES FOR SCALING UPWARDS ON SCREENSIZE: Hovering links to be cool
+# Spaced repetition client
 
-## Setup
+## Introduction
 
-To setup the application
+- Learning spanish one word at a time.
 
-1. Fork and clone the project to your machine
-2. `npm install`. This will also install the application _Cypress.io_ for running browser integration tests
+- Learn in repetition.
 
-The project expects you have the Spaced repetition API project setup and running on http://localhost:8000.
+- This is a spanish translator app, that has been produced utilizing a linked list data structure, and a specific algorithm mentioned above
 
-Find instructions to setup the API here https://github.com/Thinkful-Ed/spaced-repetition-api.
+- You will see the words you get wrong more often to get more practice.
 
-## Running project
+- The user can see their current total score, how many times they have gotten a word wrong and right. As well as a nice message congratulating the user
 
-This is a `create-react-app` project so `npm start` will start the project in development mode with hot reloading by default.
+## heroku link:
 
-## Running the tests
+https://spaced-repetition-api-vb.herokuapp.com/
 
-This project uses [Cypress IO](https://docs.cypress.io) for integration testing using the Chrome browser.
+## link to live app:
 
-Cypress has the following expectations:
+https://spaced-repetition-three.now.sh/
 
-- You have cypress installed (this is a devDependency of the project)
-- You have your application running at http://localhost:3000.
-  - You can change the address of this expectation in the `./cypress.json` file.
-- Your `./src/config.js` is using http://localhost:8000/api as the `API_ENDPOINT`
+## link to server repo:
 
-To start the tests run the command:
+https://github.com/thinkful-ei-macaw/SpacedRepition-server-VB
 
-```bash
-npm run cypress:open
-```
+## link to client repo:
 
-On the first run of this command, the cypress application will verify its install. Any other runs after this, the verification will be skipped.
+https://github.com/thinkful-ei-macaw/SpacedRepition-client-VB
 
-The command will open up the Cypress application which reads tests from the `./cypress/integration/` directory. You can then run individual tests by clicking on the file names or run all tests by clicking the "run all tests" button in the cypress GUI.
+## Partners: Vendy Prum and Brannen Petit
 
-Tests will assert against your running localhost client application.
+### Tech-Stack:
 
-You can also start all of the tests in the command line only (not using the GUI) by running the command:
+- ReactJs
+- HTML
+- JSX
+- CSS
+- heroku
 
-```bash
-npm run cypress:run
-```
+### API Docs:
 
-This will save video recordings of the test runs in the directory `./cypress/videos/`.
+- POST
+  - REQUEST: https://spaced-repetition-api-vb.herokuapp.com/api/auth/token
+  - allows user's to login and get authorization token
+  - RESPONSE: 200 OK {
+    authToken: returns authToken
+    }
+- PUT
+  - REQUEST: https://spaced-repetition-api-vb.herokuapp.com/api/auth/
+  - Updates the user's auth token, this is a refreshing situation
+  - RESPONSE: 200 OK {
+    authToken: returns authToken
+    }
+- POST
 
-# SpacedRepition-client-VB
+  - REQUEST: https://spaced-repetition-api-vb.herokuapp.com/api/users/
+  - Allows users to sign up on the app
+  - RESPONSE: 201 OK
+
+- GET
+
+  - REQUEST: https://spaced-repetition-api-vb.herokuapp.com/api/language/
+  - retrieves the user's words from the database to poplulate the dashboard
+  - RESPONSE: 200 {
+    langauge: 2,
+    words: ['felicidad', 'amor', 'etc..']
+    }
+
+  - GET
+  - REQUEST: https://spaced-repetition-api-vb.herokuapp.com/api/language/head
+  - retrieves the user next word to start practicing at the head of the linked-list
+  - RESPONSE: 200 {
+    currentWord: "felicidad",
+    nextWord: "hola",
+    totalScore: 10,
+    wordCorrectCount: 2,
+    wordIncorrectCount: 3,
+    }
+
+  - POST
+  - REQUEST: https://spaced-repetition-api-vb.herokuapp.com/api/language/guess
+  - interprets the users guess for the current word they are learning
+  - RESPONSE: 200 {
+    currentWord: "felicidad",
+    nextWord: "hola",
+    totalScore: 3,
+    wordCorrectCount: 2,
+    wordIncorrectCount: 3,
+    answer: "happiness,
+    isCorrect: True,
+    }
+
+### Summary
+
+- This app allows users to view their current spanish words, that they are attempting to learn
+- This apps allows users cycle through different words
+- This app allows users to submit a guess for each word in their list
+- This app provides the user feedback on whether or not they got a words translation correct or not
+- This app shows the user their total score and allows them to go back to the dashboard to see all their words
+
+# SpacedRepition-server-VB

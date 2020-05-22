@@ -115,11 +115,12 @@ export default class LearningPage extends React.Component {
     // let score = <p className="DisplayScore">{`Your total score is: ${this.state.totalScore}`}</p>
     let score = this.score();
     return (
+     
       <div>
         <form onSubmit={this.submitGuess}>
           <fieldset>
             <legend className="legend-title">Learn the word</legend>
-            <p>Your total score is: {this.state.totalScore}</p>
+            <div className="DisplayScore"><p>Your total score is: {this.state.totalScore}</p></div>
             <p>
               You have answered this word correctly{" "}
               {this.state.wordCorrectCount} times.
@@ -128,7 +129,8 @@ export default class LearningPage extends React.Component {
               You have answered this word incorrectly{" "}
               {this.state.wordIncorrectCount} times.
             </p>
-            <h2 className="translate-header">Translate the word:</h2>
+            {/* <h2 className="translate-header">Translate the word:</h2> */}
+      {this.state.btnClicked ? (this.state.isCorrect ? <h2>You were correct! :D</h2>: <h2>Good try, but not quite right :(</h2>): <h2 className="translate-header">Translate the word:</h2>}
             <span className="translate-word">{this.state.currentWord}</span>
             {/* <p>{label}</p> */}
             <div className="form-alignment">
@@ -155,21 +157,21 @@ export default class LearningPage extends React.Component {
                   this.state.btnClicked && (
                     <div>
                       {this.state.isCorrect ? (
-                        <div>
-                          <p>
+                        <div className="Displayfeed">
+                          {/* <p>
                             Congratulations {this.state.answer} was correct!
-                          </p>{" "}
-                          <p className="DisplayScore p">
+                          </p>{" "} */}
+                          <p >
                             Your total score is: {this.state.totalScore}
                           </p>
                         </div>
                       ) : (
                         <div>
-                          <p>
+                          {/* <p>
                             Sorry, incorrect. The answer was:{" "}
                             {this.state.answer}. was correct!
-                          </p>{" "}
-                          <p className="DisplayScore">
+                          </p>{" "} */}
+                          <p>
                             Your total score is: {this.state.totalScore}
                           </p>
                         </div>
