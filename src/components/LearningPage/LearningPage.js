@@ -2,7 +2,7 @@ import React from "react";
 import { Label, Input, Required } from "../Form/Form";
 import Config from "../../config";
 import TokenService from "../../services/token-service";
-
+import "./LearningPage.css";
 export default class LearningPage extends React.Component {
   constructor(props) {
     super(props);
@@ -96,6 +96,14 @@ export default class LearningPage extends React.Component {
     });
   };
 
+  score() {
+    return (
+      <p className="DisplayScore">
+        `Your total score is: {this.state.totalScore}``
+      </p>
+    );
+  }
+
   //ref.current.value to get from input
   render() {
     let label = Label(
@@ -104,52 +112,91 @@ export default class LearningPage extends React.Component {
       "Provide answer here"
     );
     let requiredLabel = Required({});
-
+    // let score = <p className="DisplayScore">{`Your total score is: ${this.state.totalScore}`}</p>
+    let score = this.score();
     return (
       <div>
         <form onSubmit={this.submitGuess}>
           <fieldset>
-            <p>Total score: {this.state.totalScore}</p>
-            <p>Word correct count: {this.state.wordCorrectCount}</p>
-            <p>Word incorrect count: {this.state.wordIncorrectCount}</p>
-            <h2>Translate the word:</h2>
-            <span>{this.state.currentWord}</span>
-            {/* <p>{label}</p> */}
+            <legend className="legend-title">Learn the word</legend>
+            <p>Your total score is: {this.state.totalScore}</p>
             <p>
-              <label htmlFor="learn-guess-input">
-                What's the translation for this word?
-              </label>
-              <Input
-                id="learn-guess-input"
-                type="text"
-                value={this.state.userInput}
-                onChange={this.inputChanged}
-                required
-              />
-              {requiredLabel}
+              You have answered this word correctly{" "}
+              {this.state.wordCorrectCount} times.
             </p>
-            {/* render nextword button or render submit button */}
-            {this.state.btnClicked ? (
-              <button onClick={this.nextWord}>Next Word</button>
-            ) : (
-              <button type="submit">Submit Guess</button>
-            )}
-            {/* if nextword button is rendered, render either they are right or wrong */}
-            {<button onClick={this.nextWord}>Next Word</button> &&
-              this.state.btnClicked && (
-                <div>
-                  {this.state.isCorrect ? (
+            <p>
+              You have answered this word incorrectly{" "}
+              {this.state.wordIncorrectCount} times.
+            </p>
+            <h2 className="translate-header">Translate the word:</h2>
+            <span className="translate-word">{this.state.currentWord}</span>
+            {/* <p>{label}</p> */}
+            <div className="form-alignment">
+              <div className="aligning">
+                <label htmlFor="learn-guess-input" className="learn-guess">
+                  What's the translation for this word?
+                </label>
+                <Input
+                  id="learn-guess-input"
+                  type="text"
+                  value={this.state.userInput}
+                  onChange={this.inputChanged}
+                  required
+                />
+
+                {/* render nextword button or render submit button */}
+                {this.state.btnClicked ? (
+                  <button className="submit-button" onClick={this.nextWord}>Next Word</button>
+                ) : (
+                  <button type="submit" className="submit-button">Submit your answer</button>
+                )}
+                {/* if nextword button is rendered, render either they are right or wrong */}
+                {<button className="submit-button" onClick={this.nextWord}>Next Word</button> &&
+                  this.state.btnClicked && (
                     <div>
-                      {`Congratulations ${this.state.answer} was correct!`}
+                      {this.state.isCorrect ? (
+                        <div>
+                          <p>
+                            Congratulations {this.state.answer} was correct!
+                          </p>{" "}
+                          <p className="DisplayScore p">
+                            Your total score is: {this.state.totalScore}
+                          </p>
+                        </div>
+                      ) : (
+                        <div>
+                          <p>
+                            Sorry, incorrect. The answer was:{" "}
+                            {this.state.answer}. was correct!
+                          </p>{" "}
+                          <p className="DisplayScore">
+                            Your total score is: {this.state.totalScore}
+                          </p>
+                        </div>
+                      )}
                     </div>
-                  ) : (
-                    `Sorry, incorrect. The answer was: ${this.state.answer}`
                   )}
-                </div>
-              )}
+              </div>
+            </div>
           </fieldset>
         </form>
       </div>
     );
   }
 }
+
+{
+  /* text populating when btn is clicked for cypress! */
+}
+// {<button onClick={this.nextWord}>Next Word</button> &&
+// this.state.btnClicked && (
+//   <div>
+//     {this.state.isCorrect ? (
+//       <div>
+//         {<p>Your total score is: {this.state.totalScore}</p>}
+//       </div>
+//     ) : (
+//       <p>Your total score is: {this.state.totalScore}</p>
+//     )}
+//   </div>
+// )}

@@ -3,6 +3,10 @@
   justify-content: center;
   color: rgb(116, 192, 240);
 }
+.home:hover{
+  color:olivedrab;
+  cursor: pointer;
+}
 
 .link {
   color: rgb(96, 247, 141);

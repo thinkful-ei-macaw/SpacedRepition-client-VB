@@ -1,0 +1,51 @@
+fieldset {
+    border: 0;
+}
+
+.legend-title{
+    font-size: 35px;
+}
+.translate-word{
+    display: flex;
+    justify-content: center;
+    font-size: 25px;
+    color: saddlebrown;
+    
+}
+.learn-guess{
+    display:flex;
+    justify-content: center;
+    margin-top:20px;
+    margin-bottom: 20px;
+
+}
+
+.translate-header{
+    display: flex;
+    justify-content: center;
+}
+
+.submit-button:hover{
+    background-color:olive;
+    cursor: pointer;
+}
+
+
+@media only screen and (min-width: 600px) {
+    .form-alignment{
+        display: flex;
+        justify-content: center;
+    }
+    .aligning{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+    #learn-guess-input{
+        width:34%;
+        margin-left:35%;
+    }
+    .submit-button{
+        margin-right:15%;
+    }
+  }
