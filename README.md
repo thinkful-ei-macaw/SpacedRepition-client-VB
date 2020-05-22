@@ -35,9 +35,12 @@ https://github.com/thinkful-ei-macaw/SpacedRepition-client-VB
 ### Tech-Stack:
 
 - ReactJs
+- NodeJs
+- Express
 - HTML
 - JSX
 - CSS
+- REST
 - heroku
 
 ### API Docs:
