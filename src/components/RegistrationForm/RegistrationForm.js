@@ -38,40 +38,61 @@ class RegistrationForm extends Component {
   }
 
   render() {
+    let label1 = Label(
+      { or: "registration-name-input" },
+      "name",
+      "Enter your name"
+    );
+    let label2 = Label(
+      { className: "registration-username-input" },
+      "username",
+      "Choose username"
+    );
+    let label3 = Label(
+      { className: "registration-password-input" },
+      "password",
+      "Choose password"
+    );
+    let requiredLabel = Required({});
+    // let requiredLabel = Required({});
+    // let requiredLabel = Required({});
     const { error } = this.state;
     return (
       <form className="signup-form" onSubmit={this.handleSubmit}>
         <div role="alert">{error && <p>{error}</p>}</div>
         <div>
-          <Label htmlFor="registration-name-input">
+          <label htmlFor="registration-name-input">
             Enter your name
             <Required />
-          </Label>
+          </label>
           <Input
             ref={this.firstInput}
             id="registration-name-input"
             name="name"
             required
           />
+          {requiredLabel}
         </div>
         <div>
-          <Label htmlFor="registration-username-input">
+          <label htmlFor="registration-username-input">
             Choose a username
             <Required />
-          </Label>
+          </label>
           <Input id="registration-username-input" name="username" required />
+          {requiredLabel}
         </div>
         <div>
-          <Label htmlFor="registration-password-input">
+          <label htmlFor="registration-password-input">
             Choose a password
             <Required />
-          </Label>
+          </label>
           <Input
             id="registration-password-input"
             name="password"
             type="password"
             required
           />
+          {requiredLabel}
         </div>
         <footer>
           <div>

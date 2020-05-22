@@ -85,6 +85,7 @@ export default class LearningPage extends React.Component {
     e.preventDefault();
     this.setState({
       currentWord: this.state.nextWord,
+      btnClicked: false,
       userInput: "",
     });
   };
@@ -98,7 +99,7 @@ export default class LearningPage extends React.Component {
   //ref.current.value to get from input
   render() {
     let label = Label(
-      { className: "guess-input" },
+      { for: "learn-guess-input" },
       "answer",
       "Provide answer here"
     );
@@ -111,31 +112,41 @@ export default class LearningPage extends React.Component {
             <p>Total score: {this.state.totalScore}</p>
             <p>Word correct count: {this.state.wordCorrectCount}</p>
             <p>Word incorrect count: {this.state.wordIncorrectCount}</p>
-            <p>{this.state.currentWord}</p>
-            <p>{label}</p>
+            <h2>Translate the word:</h2>
+            <span>{this.state.currentWord}</span>
+            {/* <p>{label}</p> */}
             <p>
+              <label htmlFor="learn-guess-input">
+                What's the translation for this word?
+              </label>
               <Input
+                id="learn-guess-input"
                 type="text"
                 value={this.state.userInput}
                 onChange={this.inputChanged}
+                required
               />
               {requiredLabel}
             </p>
-
+            {/* render nextword button or render submit button */}
             {this.state.btnClicked ? (
               <button onClick={this.nextWord}>Next Word</button>
             ) : (
               <button type="submit">Submit Guess</button>
             )}
-            {<button onClick={this.nextWord}>Next Word</button> && (
-              <div>
-                {this.state.isCorrect ? (
-                  <div>{this.state.answer && " you are correct"}</div>
-                ) : (
-                  this.state.answer
-                )}
-              </div>
-            )}
+            {/* if nextword button is rendered, render either they are right or wrong */}
+            {<button onClick={this.nextWord}>Next Word</button> &&
+              this.state.btnClicked && (
+                <div>
+                  {this.state.isCorrect ? (
+                    <div>
+                      {`Congratulations ${this.state.answer} was correct!`}
+                    </div>
+                  ) : (
+                    `Sorry, incorrect. The answer was: ${this.state.answer}`
+                  )}
+                </div>
+              )}
           </fieldset>
         </form>
       </div>
