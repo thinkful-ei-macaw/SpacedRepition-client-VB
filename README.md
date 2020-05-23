@@ -1,5 +1,3 @@
-# Spaced repetition API!
-
 # Spaced repetition client
 
 ## Introduction
@@ -103,5 +101,3 @@ https://github.com/thinkful-ei-macaw/SpacedRepition-client-VB
 - This app allows users to submit a guess for each word in their list
 - This app provides the user feedback on whether or not they got a words translation correct or not
 - This app shows the user their total score and allows them to go back to the dashboard to see all their words
-
-# SpacedRepition-server-VB
