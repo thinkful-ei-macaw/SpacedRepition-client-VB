@@ -3,7 +3,7 @@
 }
 .lang-title {
   font-size: 24px;
-  color: white;
+  color:#091540;
 }
 .main-title {
   display: flex;
@@ -31,10 +31,10 @@
   background: blanchedalmond;
 }
 .correct {
-  color: green;
+  color:purple;
 }
 .wrong {
-  color: red;
+  color :purple;
   text-align: right;
 }
 .original-word {

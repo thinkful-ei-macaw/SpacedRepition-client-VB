@@ -1,7 +1,7 @@
 .home {
   display: flex;
   justify-content: center;
-  color: rgb(116, 192, 240);
+  color:purple;
 }
 .home:hover{
   color:olivedrab;
@@ -9,7 +9,7 @@
 }
 
 .link {
-  color: rgb(96, 247, 141);
+  color:#091540;
   font-size: 20px;
   cursor: pointer;
 }
