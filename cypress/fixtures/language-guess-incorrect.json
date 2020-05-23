@@ -1,5 +1,6 @@
 {
   "nextWord": "test-next-word-from-incorrect-guess",
+  "currentWord": "Testnextword",
   "wordCorrectCount": 888,
   "wordIncorrectCount": 111,
   "totalScore": 999,

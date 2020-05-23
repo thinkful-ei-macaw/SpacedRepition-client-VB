@@ -1,5 +1,6 @@
 {
   "nextWord": "Testnextword",
+  "currWord": "Testnextword",
   "wordCorrectCount": 222,
   "wordIncorrectCount": 333,
   "totalScore": 999

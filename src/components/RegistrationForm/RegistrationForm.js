@@ -38,21 +38,6 @@ class RegistrationForm extends Component {
   }
 
   render() {
-    let label1 = Label(
-      { or: "registration-name-input" },
-      "name",
-      "Enter your name"
-    );
-    let label2 = Label(
-      { className: "registration-username-input" },
-      "username",
-      "Choose username"
-    );
-    let label3 = Label(
-      { className: "registration-password-input" },
-      "password",
-      "Choose password"
-    );
     let requiredLabel = Required({});
     // let requiredLabel = Required({});
     // let requiredLabel = Required({});

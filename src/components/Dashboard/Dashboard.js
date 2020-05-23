@@ -10,7 +10,6 @@ export default class Dashboard extends React.Component {
   };
 
   componentDidMount() {
-    console.log("hello");
     fetch(`${Config.API_ENDPOINT}/language`, {
       headers: {
         authorization: `Bearer ${TokenService.getAuthToken()}`,
@@ -32,13 +31,15 @@ export default class Dashboard extends React.Component {
   render() {
     const wordings = this.state.words.map((x, id) => {
       return (
-        
-          <li className="remove-bullet" key={id}>
-           <h4 className="fit original-word">{x.original}</h4> 
-            <span className="correct fit">correct answer count: {x.correct_count}</span>{" "}
-            <span className="wrong fit">incorrect answer count: {x.incorrect_count}</span>
-          </li>
-        
+        <li className="remove-bullet" key={id}>
+          <h4 className="fit original-word">{x.original}</h4>
+          <span className="correct fit">
+            correct answer count: {x.correct_count}
+          </span>{" "}
+          <span className="wrong fit">
+            incorrect answer count: {x.incorrect_count}
+          </span>
+        </li>
       );
     });
     return (
